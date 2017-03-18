@@ -12,7 +12,7 @@ services:
   - docker
 
 script:
-  - sbt test docker:publishLocal
+  - sbt test "set dockerUpdateLatest := true" 'set packageName in Docker := "play-container"' docker:publishLocal
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then ./publish-image.sh; fi
