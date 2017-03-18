@@ -8,8 +8,8 @@ then
   pip install --user awscli
   export PATH=$PATH:$HOME/.local/bin
   eval $(aws ecr get-login --region $AWS_REGION)
-  docker tag play-container "$AWS_ACCOUNT_ID".dkr.ecr."$AWS_REGION".amazonaws.com/"$AWS_DOCKER_REPOSITORY"
-  docker push "$AWS_ACCOUNT_ID".dkr.ecr."$AWS_REGION".amazonaws.com/"$AWS_DOCKER_REPOSITORY"
+  docker tag play-container "$AWS_ACCOUNT_ID".dkr.ecr."$AWS_REGION".amazonaws.com/"$AWS_DOCKER_REPOSITORY":latest
+  docker push "$AWS_ACCOUNT_ID".dkr.ecr."$AWS_REGION".amazonaws.com/"$AWS_DOCKER_REPOSITORY":latest
 else
   echo "Not publishing to AWS ECR due to missing requirements."
 fi
