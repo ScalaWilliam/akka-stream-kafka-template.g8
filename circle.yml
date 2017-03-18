@@ -12,7 +12,7 @@ dependencies:
 
 compile:
   override:
-    - sbt compile
+    - sbt docker:publishLocal
 
 test:
   override:
