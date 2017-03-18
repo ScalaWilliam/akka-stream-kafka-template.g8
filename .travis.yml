@@ -16,11 +16,11 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      if  [ -n "$AWS_ACCESS_KEY_ID" ] && \
-          [ -n "$AWS_SECRET_ACCESS_KEY" ] && \
-          [ -n "$AWS_ACCOUNT_ID" ] && \
-          [ -n "$AWS_REGION" ] && \
-          [ -n "$AWS_DOCKER_REPOSITORY" ]; then
+      if  [ ! -z "$AWS_ACCESS_KEY_ID" ] &&
+          [ ! -z "$AWS_SECRET_ACCESS_KEY" ] &&
+          [ ! -z "$AWS_ACCOUNT_ID" ] &&
+          [ ! -z "$AWS_REGION" ] &&
+          [ ! -z "$AWS_DOCKER_REPOSITORY" ]; then
         pip install --user awscli
         export PATH=$PATH:$HOME/.local/bin
         eval $(aws ecr get-login --region $AWS_REGION)
@@ -29,7 +29,9 @@ after_success:
       else
         echo "Not publishing to AWS ECR due to missing requirements."
       fi
-      if [ -n "$DOCKER_USERNAME" ] && [ -n "$DOCKER_PASSWORD" ] && [ -n "$DOCKER_REPOSITORY" ]; then
+      if  [ ! -z "$DOCKER_USERNAME" ] &&
+          [ ! -z "$DOCKER_PASSWORD" ] &&
+          [ ! -z "$DOCKER_REPOSITORY" ]; then
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push "$DOCKER_REPOSITORY";
       else
