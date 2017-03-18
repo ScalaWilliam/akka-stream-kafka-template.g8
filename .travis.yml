@@ -15,4 +15,4 @@ script:
   - sbt test docker:publishLocal
 
 after_success:
-  - [ "$TRAVIS_BRANCH" == "master" ] && ./publish-image.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./publish-image.sh; fi
