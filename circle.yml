@@ -1,0 +1,8 @@
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - sbt docker:publishLocal
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push play-sse-file
