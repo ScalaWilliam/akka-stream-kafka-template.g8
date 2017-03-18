@@ -1,0 +1,22 @@
+sudo: required
+language: scala
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
+    - geoip-resources
+jdk:
+  - oraclejdk8
+
+services:
+  - docker
+
+script:
+  - sbt test docker:publishLocal
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push USER/REPO;
+    fi
+
