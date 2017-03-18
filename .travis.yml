@@ -4,7 +4,7 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
-    - geoip-resources
+    - $HOME/.cache/pip
 jdk:
   - oraclejdk8
 
