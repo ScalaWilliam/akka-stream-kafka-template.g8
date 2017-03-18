@@ -1,3 +1,18 @@
+dependencies:
+  override:
+    - sbt update
+  cache_directories:
+    - ~/.sbt
+    - ~/.m2
+    - ~/.ivy2
+
+compile:
+  override:
+    - sbt compile
+
+test:
+  override:
+    - sbt test
 
 deployment:
   hub:
