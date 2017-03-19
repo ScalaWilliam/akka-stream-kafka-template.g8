@@ -1,7 +1,8 @@
 ***Batteries included!***
 
 > Using akka-streams, mirror one Kafka topic to another.<br>
-Serve as a base building block for any Kafka Stream applications using Scala
+Serve as a base building block for any Kafka Stream applications using Scala.<br>
+Comes with an SBT config, and a .travis.yml that can publish straight to Docker.
 
 <!-- toc -->
 
