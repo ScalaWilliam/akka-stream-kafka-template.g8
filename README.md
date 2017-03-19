@@ -42,52 +42,15 @@ Also, for [`sbt new`](http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.h
 
 # Usage
 
-## Local
-
-Assume Kafka running locally.
-
 ```
-$ sbt 'show stage'
-$ ./target/universal/stage/bin/akka-stream-kafka-mirror \
-    -Dakka.kafka.consumer.kafka-clients.group.id=consumer-group-id \
-    -Dakka.kafka.consumer.kafka-clients.bootstrap.servers=localhost:9092 \
-    -Dinput-topic=in \
-    -Dakka.kafka.producer.kafka-clients.bootstrap.servers=localhost:9092 \
-    -Doutput-topic=out
+$ sbt new ScalaWilliam/akka-stream-kafka-template.g8
 ```
 
-## Docker
+## `kafka-mirror` on Docker Hub
 
-```
-$ export "JAVA_OPTS=\
-    -Dakka.kafka.consumer.kafka-clients.group.id=consumer-group-id \
-    -Dakka.kafka.consumer.kafka-clients.bootstrap.servers=kafka:9092 \
-    -Dinput-topic=in \
-    -Dakka.kafka.producer.kafka-clients.bootstrap.servers=kafka:9092 \
-    -Doutput-topic=out"
-```
+`kafka-mirror` is automatically built from this template and published to Docker Hub:
 
-### Build image locally & run the app
-
-```
-$ sbt "set dockerUpdateLatest := true" docker:publishLocal
-$ docker run -e JAVA_OPTS -it akka-stream-kafka-mirror
-```
-
-### Run image using public build
-
-Hosted on Docker Hub: https://hub.docker.com/r/scalawilliam/akka-stream-kafka-mirror/
-
-```
-$ docker run -e JAVA_OPTS -it scalawilliam/akka-stream-kafka-mirror
-```
-
-### Publish to Docker Hub
-
-```
-$ docker login
-$ sbt docker:publish
-```
+* https://hub.docker.com/r/scalawilliam/kafka-mirror/
 
 # Other notes
 To regenerate TOC we use [markdown-toc](https://github.com/jonschlinkert/markdown-toc):
