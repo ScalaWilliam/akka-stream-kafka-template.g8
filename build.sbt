@@ -1,4 +1,5 @@
 name := "akka-stream-kafka-mirror"
+organization := "com.scalawilliam.mirror"
 scalaVersion := "2.12.1"
 
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-kafka" % "0.14"
