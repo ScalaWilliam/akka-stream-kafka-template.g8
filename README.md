@@ -6,15 +6,29 @@ Comes with an SBT config, and a .travis.yml that can publish straight to Docker.
 
 <!-- toc -->
 
-- [Relevant documentation](#relevant-documentation)
 - [Usage](#usage)
   * [`kafka-mirror` on Docker Hub](#kafka-mirror-on-docker-hub)
+- [Technical choices & relevant documentation](#technical-choices--relevant-documentation)
 - [Other notes](#other-notes)
 - [Licence](#licence)
 
 <!-- tocstop -->
 
-# Relevant documentation
+# Usage
+
+```
+$ sbt new ScalaWilliam/akka-stream-kafka-template.g8
+```
+
+And then look at `README.md`.
+
+## `kafka-mirror` on Docker Hub
+
+`kafka-mirror` is automatically built from this template and published to Docker Hub:
+
+* https://hub.docker.com/r/scalawilliam/kafka-mirror/
+
+# Technical choices & relevant documentation
 
 * Configuration options are parsed by [Typesafe Config](https://github.com/typesafehub/config), the defacto configuration library for Scala.
 * [akka-stream-kafka Consumer](http://doc.akka.io/docs/akka-stream-kafka/current/consumer.html) wraps the
@@ -35,21 +49,6 @@ Also, for [`sbt new`](http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.h
 * [`sbt new` documentation](http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.html).
 * One example: https://github.com/typesafehub/stack-examples.g8
 * And for reference: https://github.com/lloydmeta/scalameta.g8
-
-
-# Usage
-
-```
-$ sbt new ScalaWilliam/akka-stream-kafka-template.g8
-```
-
-And then look at `README.md`.
-
-## `kafka-mirror` on Docker Hub
-
-`kafka-mirror` is automatically built from this template and published to Docker Hub:
-
-* https://hub.docker.com/r/scalawilliam/kafka-mirror/
 
 # Other notes
 To regenerate TOC we use [markdown-toc](https://github.com/jonschlinkert/markdown-toc):
