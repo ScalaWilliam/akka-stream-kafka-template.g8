@@ -12,13 +12,18 @@ services:
   - docker
 
 script:
-  - sbt new file://${TRAVIS_BUILD_DIR} --name="Akka Stream Kafka Mirror" --organization=com.scalawilliam --package=com.scalawilliam.kafkamirror --className=KafkaMirrorApp --docker_repository=scalawilliam
+  - sbt new file://${TRAVIS_BUILD_DIR} \
+    --name="Akka Stream Kafka Mirror" \
+    --organization=com.scalawilliam \
+    --package=com.scalawilliam.kafkamirror \
+    --className=KafkaMirrorApp \
+    --docker_repository=scalawilliam \
+    --project_name=kafka-mirror
   - cd akka-stream-kafka-mirror
   - sbt test stage
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      cd akka-stream-kafka-mirror;
       echo 'dockerRepository := Some("scalawilliam")' >> build.sbt;
       docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
       sbt "set dockerUpdateLatest := true" docker:publish;
