@@ -1,4 +1,4 @@
-***Batteries included!*** 
+***Batteries included!***
 
 > Using akka-streams, mirror one Kafka topic to another.<br>
 Serve as a base building block for any Kafka Stream applications using Scala
@@ -31,6 +31,13 @@ provides very powerful streaming abstractions that can be used with [many connec
 * The [sbt-native-packager Docker Plugin](http://www.scala-sbt.org/sbt-native-packager/formats/docker.html) will go the extra mile to build your Docker image and publish it where you ask it to.
 * By default Docker ([What is Docker?](https://www.docker.com/what-docker)) will publish to the [Docker Hub](https://docs.docker.com/docker-hub/) which you should sign up to.
 * And finally, for logging, we use [logback](https://logback.qos.ch/).
+
+
+Also, for [`sbt new`](http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.html) support:
+* Using the [Giter8 templating](http://www.foundweekends.org/giter8/).
+* [`sbt new` documentation](http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.html).
+* One example: https://github.com/typesafehub/stack-examples.g8
+* And for reference: https://github.com/lloydmeta/scalameta.g8
 
 
 # Usage
@@ -73,7 +80,7 @@ $ docker run -e JAVA_OPTS -it akka-stream-kafka-mirror
 Hosted on Docker Hub: https://hub.docker.com/r/scalawilliam/akka-stream-kafka-mirror/
 
 ```
-$ docker run -e JAVA_OPTS -it scalawilliam/akka-stream-kafka-mirror 
+$ docker run -e JAVA_OPTS -it scalawilliam/akka-stream-kafka-mirror
 ```
 
 ### Publish to Docker Hub

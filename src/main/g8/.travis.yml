@@ -1,0 +1,20 @@
+sudo: required
+language: scala
+cache:
+  directories:
+    - \$HOME/.ivy2/cache
+    - \$HOME/.sbt/boot/
+jdk:
+  - oraclejdk8
+
+services:
+  - docker
+
+script:
+  - sbt test
+
+after_success:
+  - if [ "\$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u="\$DOCKERHUB_USERNAME" -p="\$DOCKERHUB_PASSWORD";
+      sbt "set dockerUpdateLatest := true" docker:publish;
+    fi

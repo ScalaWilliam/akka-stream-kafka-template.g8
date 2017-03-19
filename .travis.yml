@@ -1,9 +1,10 @@
-sudo: required
+sudo: false
 language: scala
 cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
+    - $HOME/.sbt/launchers/
 jdk:
   - oraclejdk8
 
@@ -11,10 +12,14 @@ services:
   - docker
 
 script:
-  - sbt test
+  - sbt new file://${TRAVIS_BUILD_DIR} --name="Akka Stream Kafka Mirror" --organization=com.scalawilliam --package=com.scalawilliam.kafkamirror --className=KafkaMirrorApp --docker_repository=scalawilliam
+  - cd akka-stream-kafka-mirror
+  - sbt test stage
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      cd akka-stream-kafka-mirror;
+      echo 'dockerRepository := Some("scalawilliam")' >> build.sbt;
       docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
       sbt "set dockerUpdateLatest := true" docker:publish;
     fi

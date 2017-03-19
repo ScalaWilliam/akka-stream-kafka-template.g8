@@ -1,28 +1,18 @@
-package com.scalawilliam.mirror
+package $package$
 
 import akka.Done
 import akka.actor.ActorSystem
-import akka.kafka.scaladsl.{Consumer, Producer}
-import akka.kafka.{
-  ConsumerSettings,
-  ProducerMessage,
-  ProducerSettings,
-  Subscriptions
-}
+import akka.kafka.scaladsl._
+import akka.kafka._
 import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.serialization.{
-  ByteArrayDeserializer,
-  ByteArraySerializer,
-  StringDeserializer,
-  StringSerializer
-}
+import org.apache.kafka.common.serialization._
 
-import scala.concurrent.{Await, Future}
+import scala.concurrent._
 import scala.concurrent.duration.Duration
 
-object IdentityTransformApp extends App {
+object $className$ extends App {
 
   private val config = ConfigFactory.load()
   private val inputTopic = config.getString("input-topic")
