@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ ! -z "$DOCKER_USERNAME" ] &&
+[ ! -z "$DOCKER_PASSWORD" ] &&
+[ ! -z "$DOCKER_REPOSITORY" ]; then
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  docker tag play-container "$DOCKER_REPOSITORY";
+  docker push "$DOCKER_REPOSITORY";
+else
+  echo "Not publishing Docker Hub due to missing environment variables."
+fi
