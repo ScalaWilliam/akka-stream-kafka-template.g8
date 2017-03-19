@@ -24,7 +24,6 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      echo 'dockerRepository := Some("scalawilliam")' >> build.sbt;
       docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
       sbt "set dockerUpdateLatest := true" docker:publish;
     fi
