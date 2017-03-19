@@ -4,7 +4,6 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
-    - $HOME/.cache/pip
 jdk:
   - oraclejdk8
 
@@ -15,4 +14,7 @@ script:
   - sbt test "set dockerUpdateLatest := true" 'set packageName in Docker := "play-container"' docker:publishLocal
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./publish-docker-hub; fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
+      sbt "set dockerUpdateLatest := true" docker:publish;
+    fi

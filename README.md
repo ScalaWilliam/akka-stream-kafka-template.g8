@@ -11,9 +11,8 @@ To create a self contained Play app that you can distribute publicly to users vi
 ## Configuration options
 
 For Travis CI, after signing up to Docker Hub and creating a 'repository' (project), set these:
-* `DOCKER_USERNAME`
-* `DOCKER_PASSWORD`
-* `DOCKER_REPOSITORY`
+* `DOCKERHUB_USERNAME`
+* `DOCKERHUB_PASSWORD`
 
 ## Usage of final image
 
