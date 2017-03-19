@@ -43,6 +43,8 @@ Also, for [`sbt new`](http://www.scala-sbt.org/0.13/docs/sbt-new-and-Templates.h
 $ sbt new ScalaWilliam/akka-stream-kafka-template.g8
 ```
 
+And then look at `README.md`.
+
 ## `kafka-mirror` on Docker Hub
 
 `kafka-mirror` is automatically built from this template and published to Docker Hub:
