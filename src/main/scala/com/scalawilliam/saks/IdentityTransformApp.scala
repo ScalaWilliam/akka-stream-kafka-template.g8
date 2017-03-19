@@ -3,11 +3,21 @@ package com.scalawilliam.saks
 import akka.Done
 import akka.actor.ActorSystem
 import akka.kafka.scaladsl.{Consumer, Producer}
-import akka.kafka.{ConsumerSettings, ProducerMessage, ProducerSettings, Subscriptions}
+import akka.kafka.{
+  ConsumerSettings,
+  ProducerMessage,
+  ProducerSettings,
+  Subscriptions
+}
 import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.serialization.{ByteArrayDeserializer, ByteArraySerializer, StringDeserializer, StringSerializer}
+import org.apache.kafka.common.serialization.{
+  ByteArrayDeserializer,
+  ByteArraySerializer,
+  StringDeserializer,
+  StringSerializer
+}
 
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
@@ -33,10 +43,14 @@ object IdentityTransformApp extends App {
       Consumer
         .committableSource(consumerSettings, Subscriptions.topics(inputTopic))
         .map { msg =>
+          val newTimestamp: java.lang.Long = {
+            if (msg.record.timestamp() < 0) null
+            else msg.record.timestamp()
+          }
           ProducerMessage.Message(new ProducerRecord(
                                     outputTopic,
                                     null,
-                                    msg.record.timestamp,
+                                    newTimestamp,
                                     msg.record.key,
                                     msg.record.value
                                   ),
