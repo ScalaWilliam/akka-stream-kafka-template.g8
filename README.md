@@ -49,7 +49,6 @@ Assume Kafka running locally.
 ```
 $ sbt 'show stage'
 $ ./target/universal/stage/bin/akka-stream-kafka-mirror \
-    -Dplay.crypto.secret=example-secret \
     -Dakka.kafka.consumer.kafka-clients.group.id=consumer-group-id \
     -Dakka.kafka.consumer.kafka-clients.bootstrap.servers=localhost:9092 \
     -Dinput-topic=in \
@@ -60,7 +59,7 @@ $ ./target/universal/stage/bin/akka-stream-kafka-mirror \
 ## Docker
 
 ```
-$ export "JAVA_OPTS=-Dplay.crypto.secret=example-secret \
+$ export "JAVA_OPTS=\
     -Dakka.kafka.consumer.kafka-clients.group.id=consumer-group-id \
     -Dakka.kafka.consumer.kafka-clients.bootstrap.servers=kafka:9092 \
     -Dinput-topic=in \
