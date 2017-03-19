@@ -5,13 +5,6 @@
 publish to [Docker Hub](https://hub.docker.com/).
 
 ## Use cases
-# Play + Travis CI + Docker Hub project
-
-> Build a [Play Framework 2.5](https://www.playframework.com/documentation/2.5.x/ScalaHome) project on [Travis CI](https://travis-ci.org/).
-<br>When in the `master` [branch](https://help.github.com/articles/github-glossary/#branch) 
-publish to [Docker Hub](https://hub.docker.com/).
-
-## Use cases
 
 To create a self contained Play app that you can distribute publicly to users via Docker Hub.
 
