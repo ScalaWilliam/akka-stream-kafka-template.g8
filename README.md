@@ -7,11 +7,7 @@ Serve as a base building block for any Kafka Stream applications using Scala
 
 - [Relevant documentation](#relevant-documentation)
 - [Usage](#usage)
-  * [Local](#local)
-  * [Docker](#docker)
-    + [Build image locally & run the app](#build-image-locally--run-the-app)
-    + [Run image using public build](#run-image-using-public-build)
-    + [Publish to Docker Hub](#publish-to-docker-hub)
+  * [`kafka-mirror` on Docker Hub](#kafka-mirror-on-docker-hub)
 - [Other notes](#other-notes)
 - [Licence](#licence)
 
