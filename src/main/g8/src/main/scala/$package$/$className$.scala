@@ -18,7 +18,7 @@ object $className$ extends App {
   private val inputTopic = config.getString("input-topic")
   private val outputTopic = config.getString("output-topic")
   private implicit val actorSystem =
-    ActorSystem("identity-transform-system", config)
+    ActorSystem("kafka-mirror-system", config)
 
   try {
     val producerSettings = ProducerSettings(actorSystem,
@@ -29,10 +29,21 @@ object $className$ extends App {
                                             new StringDeserializer)
     implicit val actorMaterializer = ActorMaterializer()
 
+    /**
+      * Using a committableSource and a committableSink,
+      * we can resume from where we left off if our process crashes.
+      */
     val completion: Future[Done] =
       Consumer
         .committableSource(consumerSettings, Subscriptions.topics(inputTopic))
         .map { msg =>
+
+          /**
+            * Basically copy from one topic to another.
+            *
+            * Note input timestamp may be -1 but output timestamp
+            * cannot be -1!
+            */
           val newTimestamp: java.lang.Long = {
             if (msg.record.timestamp() < 0) null
             else msg.record.timestamp()
